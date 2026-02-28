@@ -7,7 +7,6 @@ from datetime import datetime
 from PIL import Image
 import os
 
-# Page configuration
 st.set_page_config(
     page_title="Weather AI Agent",
     page_icon="🌤️",
@@ -15,7 +14,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better styling
 st.markdown("""
 <style>
     .step-container {
@@ -57,7 +55,7 @@ st.markdown("""
 
 def call_claude_sonnet(prompt):
     """
-    Connect to Claude 4.5 Sonnet via Amazon Bedrock
+    Connect to Claude 4.5 Sonnet via Amazon Bedrock.
     """
     bedrock = boto3.client(
         service_name='bedrock-runtime',
@@ -86,7 +84,7 @@ def call_claude_sonnet(prompt):
 
 def execute_curl_command(url):
     """
-    Execute curl command to fetch API data
+    Execute curl command to fetch API data.
     """
     try:
         result = subprocess.run(
@@ -108,7 +106,7 @@ def execute_curl_command(url):
 
 def generate_weather_api_calls(location):
     """
-    Use Claude to generate NWS API calls
+    Use Claude to generate NWS API calls.
     """
     prompt = f"""
 You are an expert at working with the National Weather Service (NWS) API.
@@ -150,7 +148,7 @@ Format: https://api.weather.gov/points/LAT,LON
 
 def get_forecast_url_from_points_response(points_json):
     """
-    Extract forecast URL from Points API response
+    Extract forecast URL from Points API response.
     """
     try:
         data = json.loads(points_json)
@@ -161,7 +159,7 @@ def get_forecast_url_from_points_response(points_json):
 
 def process_weather_response(raw_json, location):
     """
-    Use Claude to process NWS API response
+    Use Claude to process NWS API response.
     """
     prompt = f"""
 You are a weather information specialist. I have raw National Weather Service forecast data for "{location}" that needs to be converted into a clear, helpful summary for a general audience.
